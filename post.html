@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artikel — TechnikWelt</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#080C10;--dark:#0D1117;--panel:#13191F;--card:#161C22;--border:#21282F;--neon:#00D4FF;--white:#F0F4F8;--muted:#6B7C8A;--light:#8A9BAA;--purple:#8B5CF6}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--dark);color:var(--white)}
+header{background:var(--black);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1240px;margin:0 auto;padding:16px 36px;display:flex;align-items:center;justify-content:space-between}
+.logo{text-decoration:none;display:flex;align-items:center;gap:12px}
+.logo-bracket{font-family:'IBM Plex Mono',monospace;font-size:26px;color:var(--neon);font-weight:600}
+.logo-name{font-size:20px;font-weight:700;color:var(--white)}
+.logo-name em{font-style:normal;color:var(--neon)}
+nav{background:var(--panel);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1240px;margin:0 auto;padding:0 36px;display:flex}
+nav a{display:block;padding:11px 16px;color:var(--muted);text-decoration:none;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;transition:color 0.2s;font-family:'IBM Plex Mono',monospace}
+nav a:hover{color:var(--neon)}
+.post-hero{background:var(--black);padding:64px 36px 72px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.post-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--neon),transparent)}
+.post-hero-inner{max-width:820px;margin:0 auto}
+.post-breadcrumb{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:6px}
+.post-breadcrumb a{color:var(--muted);text-decoration:none}
+.post-breadcrumb a:hover{color:var(--neon)}
+.post-cat{display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);color:var(--neon);font-size:10px;font-weight:600;padding:5px 14px;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
+.post-title{font-size:52px;font-weight:700;color:var(--white);line-height:1.04;margin-bottom:22px;letter-spacing:-1px}
+.post-meta{display:flex;align-items:center;gap:20px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);padding-top:20px;border-top:1px solid var(--border)}
+.post-meta strong{color:var(--neon)}
+.layout{max-width:1100px;margin:48px auto;padding:0 36px;display:grid;grid-template-columns:1fr 270px;gap:32px}
+.main-col{background:var(--card);padding:48px;border:1px solid var(--border)}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);color:var(--neon);text-decoration:none;font-size:11px;font-weight:600;padding:7px 16px;margin-bottom:32px;font-family:'IBM Plex Mono',monospace;letter-spacing:1px;transition:all 0.2s}
+.back-btn:hover{background:var(--neon);color:var(--black)}
+.article-body{font-size:16px;line-height:1.9;color:#8A9BAA;font-weight:300}
+.article-body p{margin-bottom:26px;color:#A0B0C0}
+.article-body h2{font-size:28px;font-weight:700;color:var(--white);margin:48px 0 14px;padding-left:14px;border-left:3px solid var(--neon);letter-spacing:-0.3px}
+.article-body h3{font-size:18px;font-weight:600;color:var(--white);margin:28px 0 10px;font-family:'IBM Plex Mono',monospace}
+.article-body a{color:var(--neon);font-weight:500;text-decoration:none;border-bottom:1px solid rgba(0,212,255,0.25)}
+.article-body a:hover{color:#fff;border-color:#fff}
+.article-body ul,.article-body ol{padding-left:24px;margin-bottom:22px}
+.article-body li{margin-bottom:8px;line-height:1.75;color:#A0B0C0}
+blockquote{background:var(--panel);border-left:3px solid var(--neon);padding:20px 24px;margin:28px 0;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--light);line-height:1.7}
+.sidebar{display:flex;flex-direction:column;gap:14px}
+.widget{background:var(--card);border:1px solid var(--border);overflow:hidden}
+.wh{background:var(--panel);padding:12px 16px;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--neon);letter-spacing:2px;text-transform:uppercase}
+.wb{padding:16px}
+.ri{padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer}
+.ri:last-child{border-bottom:none;padding-bottom:0}
+.ri:first-child{padding-top:0}
+.ri-cat{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;color:var(--neon);text-transform:uppercase;margin-bottom:4px}
+.ri-title{font-size:13px;font-weight:600;color:var(--white);line-height:1.35;text-decoration:none;display:block}
+.ri-title:hover{color:var(--neon)}
+.ri-date{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-top:3px}
+.not-found{text-align:center;padding:80px;color:var(--muted);grid-column:1/-1}
+footer{background:var(--black);border-top:1px solid var(--border);margin-top:60px;text-align:center;padding:24px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
+footer a{color:var(--muted);text-decoration:none;margin:0 10px}
+footer a:hover{color:var(--neon)}
+.fl{font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;font-family:'IBM Plex Sans',sans-serif}
+.fl em{font-style:normal;color:var(--neon)}
+</style>
+</head>
+<body>
+<header><div class="header-inner"><a href="index.html" class="logo"><div class="logo-bracket">{}</div><div class="logo-name">Technik<em>Welt</em></div></a></div></header>
+<nav><div class="nav-inner"><a href="index.html">← start</a><a href="index.html">KI</a><a href="index.html">hardware</a><a href="index.html">software</a><a href="index.html">security</a></div></nav>
+<div id="post-hero" class="post-hero" style="display:none">
+  <div class="post-hero-inner">
+    <div class="post-breadcrumb"><a href="index.html">~/technikwelt</a><span>/</span><span id="post-cat-bc">technik</span></div>
+    <div class="post-cat" id="post-cat">technik</div>
+    <div class="post-title" id="post-title"></div>
+    <div class="post-meta">
+      <span>author: <strong id="post-author">redaktion</strong></span>
+      <span>date: <strong id="post-date"></strong></span>
+      <span>read: <strong id="post-read">5min</strong></span>
+    </div>
+  </div>
+</div>
+<div class="layout">
+  <div class="main-col">
+    <a href="index.html" class="back-btn">← zurück</a>
+    <div id="article-body" class="article-body"></div>
+    <div id="not-found" class="not-found" style="display:none"><h2 style="font-size:24px;color:var(--white);margin-bottom:8px">// artikel nicht gefunden</h2></div>
+  </div>
+  <aside class="sidebar">
+    <div class="widget"><div class="wh">// weitere artikel</div><div class="wb"><div id="recent-posts"></div></div></div>
+    <div class="widget"><div class="wh">// über technikwelt</div><div class="wb"><p style="font-size:13px;line-height:1.7;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:12px">TechnikWelt — Dein deutsches Tech-Blog für KI, Hardware, Software & digitale Trends.</p></div></div>
+  </aside>
+</div>
+<footer><div class="fl">Technik<em>Welt</em></div><p>// &copy; 2026 TechnikWelt &nbsp;|&nbsp;<a href="#">Impressum</a>&nbsp;|&nbsp;<a href="#">Datenschutz</a></p></footer>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id');
+const SITE_NAME = 'technikwelt';
+const GIST_ID = '42ea11087f40fdba423f8eb0f575ac96'; // Same Gist for all sites!
+
+async function loadPost() {
+  try {
+    console.log('Fetching post from Gist ID:', GIST_ID);
+    console.log('Looking for post ID:', id);
+    
+    const rawUrl = `https://gist.githubusercontent.com/Hamzamain-spec/${GIST_ID}/raw/posts.json`;
+    const response = await fetch(rawUrl);
+    
+    if (response.ok) {
+      const allPosts = await response.json();
+      console.log('All posts:', allPosts);
+      
+      const sitePosts = allPosts.filter(post => post.site === SITE_NAME);
+      console.log(`Found ${sitePosts.length} posts for site: ${SITE_NAME}`);
+      
+      const post = sitePosts.find(p => p.id == id);
+      console.log('Found post:', post);
+      
+      if (post) {
+        document.title = post.title + ' — TechnikWelt';
+        document.getElementById('post-title').textContent = post.title;
+        document.getElementById('post-cat').textContent = post.category || 'Technik';
+        document.getElementById('post-cat-bc').textContent = (post.category || 'technik').toLowerCase();
+        document.getElementById('post-author').textContent = (post.author || 'Redaktion').toLowerCase();
+        document.getElementById('post-date').textContent = new Date(post.date).toLocaleDateString('de-DE', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
+        
+        const words = post.content.replace(/<[^>]+>/g, '').split(' ').length;
+        document.getElementById('post-read').textContent = Math.max(1, Math.round(words / 200)) + 'min';
+        
+        document.getElementById('article-body').innerHTML = post.content;
+        document.getElementById('post-hero').style.display = 'block';
+        
+        // Recent posts
+        const rp = document.getElementById('recent-posts');
+        rp.innerHTML = '';
+        sitePosts.slice().reverse().slice(0, 5).forEach(p => {
+          if (p.id == id) return;
+          rp.innerHTML += `<div class="ri"><div class="ri-cat">${p.category || 'Technik'}</div><a class="ri-title" href="post.html?id=${p.id}">${p.title}</a><div class="ri-date">${new Date(p.date).toLocaleDateString('de-DE')}</div></div>`;
+        });
+      } else {
+        console.log('Post not found for ID:', id);
+        document.getElementById('not-found').style.display = 'block';
+      }
+    } else {
+      console.error('Failed to fetch from Gist:', response.status);
+      document.getElementById('not-found').style.display = 'block';
+    }
+  } catch (error) {
+    console.error('Error loading post:', error);
+    document.getElementById('not-found').style.display = 'block';
+  }
+}
+
+loadPost();
+</script>
+</body>
+</html>
