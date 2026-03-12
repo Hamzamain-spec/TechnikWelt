@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechnikWelt — Technik, Digital & Zukunft</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#080C10;--dark:#0D1117;--panel:#13191F;--card:#161C22;--border:#21282F;--neon:#00D4FF;--neon-dim:rgba(0,212,255,0.08);--purple:#8B5CF6;--green:#00FF88;--orange:#FF6B35;--white:#F0F4F8;--muted:#6B7C8A;--light:#8A9BAA}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--dark);color:var(--white)}
+
+/* TOPBAR */
+.topbar{background:var(--black);border-bottom:1px solid var(--border);padding:7px 0}
+.topbar-inner{max-width:1240px;margin:0 auto;padding:0 36px;display:flex;justify-content:space-between;align-items:center}
+.topbar-left{display:flex;align-items:center;gap:8px}
+.topbar-badge{background:var(--neon);color:var(--black);font-size:9px;font-weight:700;letter-spacing:2px;padding:2px 8px;font-family:'IBM Plex Mono',monospace}
+.topbar-text{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
+.topbar-text span{color:var(--neon)}
+.topbar-right{display:flex;gap:14px}
+.topbar-right a{font-size:11px;color:var(--muted);text-decoration:none;font-family:'IBM Plex Mono',monospace}
+.topbar-right a:hover{color:var(--neon)}
+
+/* HEADER */
+header{background:var(--black);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1240px;margin:0 auto;padding:18px 36px;display:flex;align-items:center;justify-content:space-between}
+.logo{text-decoration:none;display:flex;align-items:center;gap:14px}
+.logo-bracket{font-family:'IBM Plex Mono',monospace;font-size:32px;color:var(--neon);font-weight:600;line-height:1}
+.logo-text{display:flex;flex-direction:column}
+.logo-name{font-size:22px;font-weight:700;color:var(--white);letter-spacing:-0.5px;line-height:1}
+.logo-name em{font-style:normal;color:var(--neon)}
+.logo-sub{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;margin-top:3px}
+.header-nav{display:flex;gap:2px}
+.header-nav a{padding:8px 14px;color:var(--muted);text-decoration:none;font-size:12px;font-weight:500;transition:color 0.2s;font-family:'IBM Plex Mono',monospace;letter-spacing:0.5px}
+.header-nav a:hover{color:var(--neon)}
+
+/* NAV BAR */
+nav{background:var(--panel);border-bottom:1px solid var(--border);position:relative}
+nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--neon),transparent);opacity:0.3}
+.nav-inner{max-width:1240px;margin:0 auto;padding:0 36px;display:flex}
+nav a{display:block;padding:12px 18px;color:var(--muted);text-decoration:none;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:all 0.2s;border-bottom:2px solid transparent;margin-bottom:-1px;font-family:'IBM Plex Mono',monospace}
+nav a:hover{color:var(--neon);border-bottom-color:var(--neon)}
+
+/* HERO — terminal-style */
+.hero{background:var(--black);border-bottom:1px solid var(--border);padding:0}
+.hero-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 400px;min-height:460px}
+.hero-main{padding:56px 48px 56px 36px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--border);position:relative}
+.hero-main::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 20% 50%,rgba(0,212,255,0.04) 0%,transparent 60%)}
+.terminal-line{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.terminal-prompt{color:var(--neon)}
+.terminal-cursor{width:8px;height:14px;background:var(--neon);display:inline-block;animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-title{font-size:50px;font-weight:700;color:var(--white);line-height:1.04;margin-bottom:16px;letter-spacing:-1px;position:relative}
+.hero-title .highlight{color:var(--neon)}
+.hero-excerpt{font-size:15px;line-height:1.8;color:var(--muted);font-weight:300;max-width:540px;margin-bottom:28px;position:relative}
+.hero-btns{display:flex;gap:10px;position:relative}
+.btn-neon{display:inline-flex;align-items:center;gap:8px;background:var(--neon);color:var(--black);padding:11px 22px;text-decoration:none;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;font-family:'IBM Plex Mono',monospace;transition:all 0.2s}
+.btn-neon:hover{background:#00B8DC;transform:translateY(-1px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid var(--border);color:var(--light);padding:11px 20px;text-decoration:none;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;font-family:'IBM Plex Mono',monospace;transition:all 0.2s}
+.btn-ghost:hover{border-color:var(--neon);color:var(--neon)}
+.hero-meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-top:20px;display:flex;align-items:center;gap:16px;position:relative}
+.hero-cat{color:var(--neon)}
+.hero-side{padding:36px 32px;display:flex;flex-direction:column;gap:0}
+.hero-side-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.side-item{padding:16px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:padding 0.15s}
+.side-item:last-child{border-bottom:none}
+.side-item:hover{padding-left:6px}
+.si-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;color:var(--purple);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px}
+.si-title{font-size:14px;font-weight:600;color:var(--white);line-height:1.3;margin-bottom:5px}
+.si-date{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted)}
+
+/* GRID CONTENT */
+.content-area{max-width:1240px;margin:44px auto;padding:0 36px}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.sh-mono{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--neon);letter-spacing:1px}
+.sh-title{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+.sh-line{flex:1;height:1px;background:var(--border)}
+
+/* POST CARDS — code-style */
+.posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:2px}
+.post-card{background:var(--card);border:1px solid var(--border);cursor:pointer;transition:all 0.25s;overflow:hidden;position:relative}
+.post-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--neon);transform:scaleX(0);transition:transform 0.3s;transform-origin:left}
+.post-card:hover::before{transform:scaleX(1)}
+.post-card:hover{border-color:var(--neon);background:var(--panel)}
+.pc-thumb{height:160px;position:relative;overflow:hidden}
+.pc-thumb-bg{width:100%;height:100%;position:absolute;inset:0;transition:transform 0.5s}
+.post-card:hover .pc-thumb-bg{transform:scale(1.06)}
+.pc-tag{position:absolute;top:12px;left:12px;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;color:var(--neon);letter-spacing:2px;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.2);padding:3px 10px;text-transform:uppercase}
+.pc-body{padding:20px}
+.pc-title{font-size:16px;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:8px}
+.pc-excerpt{font-size:13px;line-height:1.65;color:var(--muted);margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pc-footer{display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);padding-top:12px;border-top:1px solid var(--border)}
+.pc-link{color:var(--neon);text-decoration:none;font-weight:600;letter-spacing:1px}
+.pc-link:hover{color:#fff}
+.bg1{background:linear-gradient(135deg,#080C10,#0D1833)}
+.bg2{background:linear-gradient(135deg,#0D1833,#1A0A30)}
+.bg3{background:linear-gradient(135deg,#0A1A10,#0A2A18)}
+.bg4{background:linear-gradient(135deg,#1A0A08,#301510)}
+.bg5{background:linear-gradient(135deg,#0A0A20,#15102A)}
+.bg6{background:linear-gradient(135deg,#101018,#1A1A28)}
+.empty-state{text-align:center;padding:80px;color:var(--muted);background:var(--card);border:1px solid var(--border)}
+.empty-state h3{font-size:26px;font-weight:700;color:var(--white);margin-bottom:8px}
+
+footer{background:var(--black);border-top:1px solid var(--border);margin-top:48px}
+.footer-inner{max-width:1240px;margin:0 auto;padding:48px 36px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+.footer-logo{font-size:20px;font-weight:700;color:var(--white);margin-bottom:10px}
+.footer-logo em{font-style:normal;color:var(--neon)}
+.footer-inner>div>p{font-size:13px;line-height:1.7;color:var(--muted);font-weight:300}
+.footer-col h4{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--neon);margin-bottom:14px}
+.footer-col a{display:block;color:var(--muted);text-decoration:none;font-size:13px;margin-bottom:8px}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{border-top:1px solid var(--border);max-width:1240px;margin:0 auto;padding:16px 36px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted)}
+.footer-bottom a{color:var(--muted);text-decoration:none;margin-left:14px}
+.footer-bottom a:hover{color:var(--neon)}
+.admin-link{position:fixed;bottom:20px;right:20px;background:var(--neon);color:var(--black);padding:10px 20px;font-size:11px;text-decoration:none;opacity:0.4;transition:opacity 0.2s;font-weight:700;font-family:'IBM Plex Mono',monospace;letter-spacing:1px}
+.admin-link:hover{opacity:1}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner">
+  <div class="topbar-left"><span class="topbar-badge">LIVE</span><span class="topbar-text">// <span>TechnikWelt</span> — Technik · KI · Digital · Zukunft</span></div>
+  <div class="topbar-right"><a href="#">Newsletter</a><a href="#">RSS</a><a href="#">Impressum</a></div>
+</div></div>
+<header><div class="header-inner">
+  <a href="index.html" class="logo">
+    <div class="logo-bracket">{}</div>
+    <div class="logo-text"><div class="logo-name">Technik<em>Welt</em></div><div class="logo-sub">// TECHNIK · DIGITAL · ZUKUNFT</div></div>
+  </a>
+  <div class="header-nav"><a href="index.html">KI</a><a href="index.html">Hardware</a><a href="index.html">Software</a><a href="index.html">Security</a><a href="index.html">Startup</a></div>
+</div></header>
+<nav><div class="nav-inner">
+  <a href="index.html">Start</a><a href="index.html">Künstliche Intelligenz</a><a href="index.html">Hardware</a>
+  <a href="index.html">Software</a><a href="index.html">Cybersecurity</a><a href="index.html">Startups</a><a href="index.html">Reviews</a><a href="index.html">Ratgeber</a>
+</div></nav>
+
+<div id="hero-section" class="hero" style="display:none">
+  <div class="hero-inner">
+    <div class="hero-main" id="hero-main"></div>
+    <div class="hero-side"><div class="hero-side-label">// weitere artikel</div><div id="hero-side-items"></div></div>
+  </div>
+</div>
+<div id="hero-empty" style="display:none;background:var(--black);padding:60px;text-align:center;border-bottom:1px solid var(--border)">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--muted)">// artikel werden geladen...</div>
+</div>
+
+<div class="content-area">
+  <div class="section-header"><span class="sh-mono">01.</span><span class="sh-title">Aktuelle Artikel</span><div class="sh-line"></div></div>
+  <div id="posts-grid" class="posts-grid">
+    <div class="empty-state" style="grid-column:1/-1"><h3>Artikel werden geladen...</h3><p>Bitte warten Sie einen Moment.</p></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-logo">Technik<em>Welt</em></div><p>TechnikWelt berichtet über Technologie, Künstliche Intelligenz, digitale Trends und die Zukunft — für tech-affine Leser im deutschsprachigen Raum.</p></div>
+    <div class="footer-col"><h4>Ressorts</h4><a href="#">KI & Machine Learning</a><a href="#">Hardware</a><a href="#">Cybersecurity</a><a href="#">Startups</a></div>
+    <div class="footer-col"><h4>Service</h4><a href="#">Newsletter</a><a href="#">RSS Feed</a><a href="#">Podcast</a></div>
+    <div class="footer-col"><h4>Info</h4><a href="#">Über uns</a><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
+  </div>
+  <div class="footer-bottom"><span>// &copy; 2026 TechnikWelt — made with &lt;3 in Deutschland</span><div><a href="#">Impressum</a><a href="#">Datenschutz</a></div></div>
+</footer>
+<a href="admin.html" class="admin-link">$ admin</a>
+
+<script>
+const bgs = ['bg1','bg2','bg3','bg4','bg5','bg6'];
+const SITE_NAME = 'technikwelt';
+const GIST_ID = '42ea11087f40fdba423f8eb0f575ac96'; // Same Gist for all sites!
+
+async function loadPosts() {
+  const pg = document.getElementById('posts-grid');
+  const hs = document.getElementById('hero-section');
+  const he = document.getElementById('hero-empty');
+  const hm = document.getElementById('hero-main');
+  const hsi = document.getElementById('hero-side-items');
+  
+  try {
+    console.log('Fetching from Gist ID:', GIST_ID);
+    
+    const rawUrl = `https://gist.githubusercontent.com/Hamzamain-spec/${GIST_ID}/raw/posts.json`;
+    const response = await fetch(rawUrl);
+    
+    if (response.ok) {
+      const allPosts = await response.json();
+      console.log('All posts from Gist:', allPosts);
+      
+      // Filter by site name
+      const sitePosts = allPosts.filter(post => post.site === SITE_NAME);
+      console.log(`Found ${sitePosts.length} posts for site: ${SITE_NAME}`);
+      
+      // Sort by date (newest first)
+      const sortedPosts = [...sitePosts].sort((a, b) => new Date(b.date) - new Date(a.date));
+      
+      if (sortedPosts.length === 0) {
+        he.style.display = 'block';
+        he.innerHTML = '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:14px;color:var(--muted)">// noch keine artikel — erstelle deinen ersten im admin-bereich</div>';
+        pg.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><h3>Noch keine Artikel</h3><p>Erstelle deinen ersten Beitrag im Admin-Bereich.</p></div>';
+        return;
+      }
+      
+      hs.style.display = 'block';
+      he.style.display = 'none';
+      
+      // Hero (first post)
+      const p = sortedPosts[0];
+      const fd = new Date(p.date).toLocaleDateString('de-DE', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      });
+      const exc = p.content.replace(/<[^>]+>/g, '').substring(0, 160) + '...';
+      
+      hm.innerHTML = `
+        <div class="terminal-line"><span class="terminal-prompt">$</span><span>cat artikel.md</span><span class="terminal-cursor"></span></div>
+        <div class="hero-title">${p.title.replace(/(\w+)$/, '<span class="highlight">$1</span>')}</div>
+        <div class="hero-excerpt">${exc}</div>
+        <div class="hero-btns"><a class="btn-neon" href="post.html?id=${p.id}">Artikel lesen →</a><a class="btn-ghost" href="index.html">Alle Artikel</a></div>
+        <div class="hero-meta"><span class="hero-cat">[${p.category || 'Technik'}]</span><span>${p.author || 'Redaktion'}</span><span>${fd}</span></div>
+      `;
+      
+      // Hero side items (next 3 posts)
+      hsi.innerHTML = '';
+      sortedPosts.slice(1, 4).forEach(p => {
+        const item = document.createElement('div');
+        item.className = 'side-item';
+        item.onclick = () => location.href = `post.html?id=${p.id}`;
+        item.innerHTML = `
+          <div class="si-tag">${p.category || 'Technik'}</div>
+          <div class="si-title">${p.title}</div>
+          <div class="si-date">${new Date(p.date).toLocaleDateString('de-DE')}</div>
+        `;
+        hsi.appendChild(item);
+      });
+      
+      // Posts grid
+      pg.innerHTML = '';
+      sortedPosts.forEach((p, i) => {
+        const date = new Date(p.date).toLocaleDateString('de-DE');
+        const exc = p.content.replace(/<[^>]+>/g, '').substring(0, 90) + '...';
+        
+        const card = document.createElement('div');
+        card.className = 'post-card';
+        card.onclick = () => location.href = `post.html?id=${p.id}`;
+        
+        card.innerHTML = `
+          <div class="pc-thumb">
+            <div class="pc-thumb-bg ${bgs[i % bgs.length]}"></div>
+            <div class="pc-tag">${p.category || 'Technik'}</div>
+          </div>
+          <div class="pc-body">
+            <div class="pc-title">${p.title}</div>
+            <div class="pc-excerpt">${exc}</div>
+            <div class="pc-footer">
+              <span>${p.author || 'Redaktion'} · ${date}</span>
+              <a class="pc-link" href="post.html?id=${p.id}">lesen →</a>
+            </div>
+          </div>
+        `;
+        
+        pg.appendChild(card);
+      });
+      
+      console.log(`Displayed ${sortedPosts.length} posts`);
+    } else {
+      console.error('Failed to fetch from Gist:', response.status);
+      he.style.display = 'block';
+      he.innerHTML = '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:14px;color:var(--muted)">// fehler beim laden der artikel</div>';
+    }
+  } catch (error) {
+    console.error('Error loading posts:', error);
+    he.style.display = 'block';
+    he.innerHTML = '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:14px;color:var(--muted)">// fehler: ' + error.message + '</div>';
+  }
+}
+
+// Load posts when page loads
+loadPosts();
+
+// Auto-refresh every 30 seconds
+setInterval(loadPosts, 30000);
+</script>
+</body>
+</html>
